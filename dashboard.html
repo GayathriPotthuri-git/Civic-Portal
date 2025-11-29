@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civic Dashboard - Complaint Portal</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Fallback basic styles if CSS doesn't load */
+        body { margin: 0; font-family: Arial, sans-serif; }
+        .dashboard-container { display: flex; min-height: 100vh; }
+        .sidebar { width: 250px; background: #2c3e50; color: white; }
+        .main-content { flex: 1; padding: 20px; }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2><i class="fas fa-city"></i> Civic Portal</h2>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#profile" class="nav-item active" onclick="showSection('profile')">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+                <a href="civic.html" class="nav-item">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Raise Issue</span>
+                </a>
+                <a href="#status" class="nav-item" onclick="showSection('status')">
+                    <i class="fas fa-tasks"></i>
+                    <span>Issue Status</span>
+                </a>
+                <a href="#help-desk" class="nav-item" onclick="showSection('help-desk')">
+                    <i class="fas fa-headset"></i>
+                    <span>Help Desk</span>
+                </a>
+                <a href="#history" class="nav-item" onclick="showSection('history')">
+                    <i class="fas fa-history"></i>
+                    <span>History</span>
+                </a>
+            </nav>
+
+            <!-- Logout Section - MOVED INSIDE SIDEBAR -->
+            <div class="logout-section">
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="main-header">
+                <div class="header-left">
+                    <h1 id="section-title">User Profile</h1>
+                </div>
+                <div class="header-right">
+                    <div class="notification-icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="user-info">
+                        <img src="https://via.placeholder.com/40" alt="Profile" class="user-avatar">
+                        <span>Welcome, User!</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Profile Section -->
+            <section id="profile" class="content-section active">
+                <div class="profile-container">
+                    <div class="profile-header">
+                        <div class="profile-image-container">
+                            <img src="https://www.svgrepo.com/show/496485/profile-circle.svg" alt="Profile" class="profile-image">
+                            <button class="edit-image-btn">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                        </div>
+                        <div class="profile-info">
+                            <h2>Gayathri Potthuri</h2>
+                            <p class="user-role">Citizen</p>
+                            <p class="user-location"><i class="fas fa-map-marker-alt"></i> Hyderabad, Telangana, 500054</p>
+                            <p class="user-email"><i class="fas fa-envelope"></i> <span id="user-email-display">user@example.com</span></p>
+                        </div>
+                    </div>
+
+                    <div class="profile-details">
+                        <div class="detail-card">
+                            <h3><i class="fas fa-info-circle"></i> Personal Information</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <label>Full Name</label>
+                                    <p id="profile-fullname">Gayathri Potthuri</p>
+                                </div>
+                                <div class="detail-item">
+                                    <label>Email</label>
+                                    <p id="profile-email">gayathri@example.com</p>
+                                </div>
+                                <div class="detail-item">
+                                    <label>Phone</label>
+                                    <p>+91 9876543210</p>
+                                </div>
+                                <div class="detail-item">
+                                    <label>Address</label>
+                                    <p>Hyderabad, Telangana, 500054</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="detail-card">
+                            <h3><i class="fas fa-chart-bar"></i> Activity Summary</h3>
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <div class="stat-number" id="total-issues">0</div>
+                                    <div class="stat-label">Total Issues</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number" id="resolved-issues">0</div>
+                                    <div class="stat-label">Resolved</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number" id="progress-issues">0</div>
+                                    <div class="stat-label">In Progress</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number" id="pending-issues">0</div>
+                                    <div class="stat-label">Pending</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Raise Issue Section -->
+            <section id="raise-issue" class="content-section">
+                <div class="section-header">
+                    <h2>Raise New Issue</h2>
+                    <p>Report civic issues quickly and efficiently</p>
+                </div>
+                <div id="complaint-form-container">
+                    <!-- Complaint form will load here -->
+                </div>
+            </section>
+
+            <!-- Status Section -->
+            <section id="status" class="content-section">
+                <div class="section-header">
+                    <h2>Issue Status</h2>
+                    <p>Track your submitted complaints</p>
+                </div>
+                
+                <div class="status-search">
+                    <div class="search-box">
+                        <input type="text" id="search-complaint-id" placeholder="Enter Complaint ID">
+                        <button onclick="searchComplaint()">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </div>
+                </div>
+
+                <div class="status-filters">
+                    <button class="filter-btn active" onclick="filterComplaints('all')">All</button>
+                    <button class="filter-btn" onclick="filterComplaints('submitted')">Submitted</button>
+                    <button class="filter-btn" onclick="filterComplaints('in-progress')">In Progress</button>
+                    <button class="filter-btn" onclick="filterComplaints('resolved')">Resolved</button>
+                </div>
+
+                <div id="complaints-list" class="complaints-grid">
+                    <!-- Complaints will be dynamically loaded here -->
+                </div>
+            </section>
+
+            <!-- Help Desk Section -->
+            <section id="help-desk" class="content-section">
+                <div class="section-header">
+                    <h2>Help Desk</h2>
+                    <p>Get assistance with your civic issues</p>
+                </div>
+
+                <div class="help-options">
+                    <div class="help-card">
+                        <i class="fas fa-phone-alt"></i>
+                        <h3>Emergency Contact</h3>
+                        <p>Immediate assistance for urgent issues</p>
+                        <div class="contact-info">
+                            <p><strong>Phone:</strong> 1-800-CIVIC-HELP</p>
+                            <p><strong>Available:</strong> 24/7</p>
+                        </div>
+                    </div>
+
+                    <div class="help-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email Support</h3>
+                        <p>Get help via email for non-urgent matters</p>
+                        <div class="contact-info">
+                            <p><strong>Email:</strong> support@civicportal.gov</p>
+                            <p><strong>Response:</strong> Within 24 hours</p>
+                        </div>
+                    </div>
+
+                    <div class="help-card">
+                        <i class="fas fa-comments"></i>
+                        <h3>Live Chat</h3>
+                        <p>Chat with our support team in real-time</p>
+                        <div class="contact-info">
+                            <p><strong>Hours:</strong> 8 AM - 8 PM EST</p>
+                            <button class="chat-btn">Start Chat</button>
+                        </div>
+                    </div>
+
+                    <div class="help-card">
+                        <i class="fas fa-question-circle"></i>
+                        <h3>FAQ</h3>
+                        <p>Find answers to common questions</p>
+                        <div class="contact-info">
+                            <p>Browse our frequently asked questions</p>
+                            <button class="faq-btn">View FAQ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="department-contacts">
+                    <h3>Department Contacts</h3>
+                    <div class="contacts-grid">
+                        <div class="contact-item">
+                            <h4>Public Works</h4>
+                            <p>Phone: (555) 123-4567</p>
+                            <p>Email: publicworks@city.gov</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>Sanitation</h4>
+                            <p>Phone: (555) 123-4568</p>
+                            <p>Email: sanitation@city.gov</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>Utilities</h4>
+                            <p>Phone: (555) 123-4569</p>
+                            <p>Email: utilities@city.gov</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- History Section -->
+            <section id="history" class="content-section">
+                <div class="section-header">
+                    <h2>Complaint History</h2>
+                    <p>View your past submitted issues</p>
+                </div>
+                <div id="history-list">
+                    <!-- History items will be loaded here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

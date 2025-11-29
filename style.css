@@ -1,0 +1,89 @@
+/* Add to your existing style.css */
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+header, .center {
+    text-align: center;
+}
+
+.form-box {
+    background: white;
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.btn {
+    background: #0078FF;
+    color: white;
+    padding: 12px 15px;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background: #0056cc;
+}
+
+a {
+    color: #0078FF;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+/* Add to your existing style.css */
+.btn:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+}
+
+.btn:disabled:hover {
+    background: #6c757d;
+}
+
+.form-box {
+    position: relative;
+}
+
+/* Loading animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top: 2px solid transparent;
+    animation: spin 1s linear infinite;
+    margin-right: 8px;
+}
